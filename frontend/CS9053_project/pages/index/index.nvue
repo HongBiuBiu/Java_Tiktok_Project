@@ -1,0 +1,320 @@
+<style scoped>
+	/* index start */
+	.page {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: #000000;
+	}
+	/* index end */
+	
+	/* Top navigation tabs start */
+	.header {
+		position: absolute;
+		left: 0;
+		right: 0;
+		flex-direction: row;
+		height: 100rpx;
+		line-height: 100rpx;
+		align-items: center;
+		padding-left: 40rpx;
+		padding-right: 40rpx;
+	}
+	
+	.header-center {
+		flex: 1;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.header-left,
+	.header-right {
+		color: #999;
+		height: 100rpx;
+		line-height: 100rpx;
+		align-items: flex-start;
+		justify-content: flex-end;
+		font-family: iconfont;
+	}
+	
+	.header-right-search {
+		height: 100rpx;
+		/* align-items: flex-start;
+		justify-content: flex-end; */
+	}
+	
+	.header-item {
+		align-items: center;
+		margin-left: 6rpx;
+		margin-right: 6rpx;
+	}
+	
+	.header-item-title {
+		width: 120rpx;
+		text-align: center;
+		height: 60rpx;
+		line-height: 60rpx;
+		color: #FFFFFF;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.header-refresh-title {
+		width: 300rpx;
+		text-align: center;
+		height: 60rpx;
+		line-height: 60rpx;
+		color: #FFFFFF;
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.header-item-line {
+		height: 5rpx;
+		line-height: 8rpx;
+		width: 60rpx;
+		border-radius: 8rpx;
+	}
+	/* Top navigation tabs end */
+	
+	/* Carousel component for tabs start */
+	.my-swiper {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+	.near-by {
+		background-color: #000000;
+		align-items: center;
+		justify-content: center;
+	}
+	.my-follow {
+		background-color: #000000;
+		align-items: center;
+		justify-content: center;
+	}
+	/* Carousel component for tabs end */
+	.warn-info {
+		color: #FFFFFF;
+		font-size: 36rpx;
+		font-weight: 600;
+	}
+	.normal-img {
+		width: 50rpx;
+		height: 50rpx;
+		opacity: 0.8;
+	}
+</style>
+<template>
+	<view class="page">
+		<!-- The three pages to switch are left, middle, and right, respectively: Nearby - Following - Recommended. -->
+		<swiper style="my-swiper" :style="{height: screenHeight + 'px'}" :current="curIndex" @change="changeTopTab">
+			<swiper-item>
+				<view class="near-by" :style="{height: screenHeight+'px'}">
+					<text class="warn-info">It is not available at the moment, please stay tuned!</text>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view v-if="myUserInfo == null" class="my-follow" :style="{height: screenHeight+'px'}">
+					<text class="warn-info">Please log in to view!</text>
+				</view>
+					<video-follow-comp
+						ref="videoFollowComp"
+						:screenHeight="screenHeight" 
+						:playFollowStatus="playFollowStatus" 
+						:videoList="videoList"
+						:refreshList="refreshList"
+						:pagingList="pagingList"
+						@showLoading="showLoading"
+						@hideLoading="hideLoading"
+						@letFollowVideoPause="letFollowVideoPause"
+						@displayVideoPaging="displayVideoPaging"></video-follow-comp>
+			</swiper-item>
+			<swiper-item>
+					<video-comp
+						ref="videoComp"
+						:screenHeight="screenHeight" 
+						:playStatus="playStatus" 
+						:videoList="videoList"
+						:refreshList="refreshList"
+						:pagingList="pagingList"
+						@showLoading="showLoading"
+						@hideLoading="hideLoading"
+						@displayVideoPaging="displayVideoPaging"></video-comp>
+			</swiper-item>
+		</swiper>
+		
+		<view class="header" :style="{marginTop:statusBarHeight+'px'}" v-if="!isLoading">
+			<text class="header-left"></text>
+			<view class="header-center">
+				<view class="header-item" @click="tapFollow(0)">
+					<text class="header-item-title">Nearby</text>
+					<view class="header-item-line" :class="{'activate-line': curIndex === 0}"></view>
+				</view>
+				<view class="header-item" @click="tapFollow(1)">
+					<text class="header-item-title">Followed</text>
+					<view class="header-item-line" :class="{'activate-line': curIndex === 1}"></view>
+				</view>
+				<view class="header-item" @click="tapFollow(2)">
+					<text class="header-item-title">Recommand</text>
+					<view class="header-item-line" :class="{'activate-line': curIndex === 2}"></view>
+				</view>
+			</view>
+			<image class="header-right-search normal-img" src="../../static/images/icon-search.png" @click="goSearch">
+		</view>
+		
+		<view class="header" :style="{marginTop:statusBarHeight+'px'}" v-if="isLoading">
+			<text class="header-left"></text>
+			<view class="header-center">
+				<view class="header-item">
+					<text class="header-refresh-title">Pull down to refresh videos.</text>
+				</view>
+			</view>
+			<image class="header-right-search normal-img" src="../../static/images/loading.gif">
+		</view>
+		<!-- Navigation for switching at the top. end -->
+		
+	</view>
+</template>
+<script>
+	var system = uni.getSystemInfoSync();
+	var app = getApp();
+	// import uniHeader from '@/components/header';
+	// import uniFooter from '@/components/footer';
+	// import uniSwiper from '@/components/swiper';
+	import videoComp from '@/components/videoComp.vue';
+	import videoFollowComp from '@/components/videoFollowComp.vue';
+	export default {
+		components: {
+			// uniHeader,
+			// uniFooter,
+			// uniSwiper,
+			videoComp,
+			videoFollowComp
+		},
+		data() {
+			return {
+				isLoading: false,
+				
+				statusBarHeight: system.statusBarHeight,
+				screenHeight: system.screenHeight,
+				// screenHeight: system.safeArea.bottom,// - 50,
+				curIndex: 2,
+				playStatus: false,
+				playFollowStatus: false,
+				
+				// videoList: getApp().getDefaultVlogList(),			// Default video list obtained from the initial query on the homepage.
+				videoList: [],			// Default video list obtained from the initial query on the homepage.
+				refreshList: [],			//  New list obtained after pulling down to refresh.
+				pagingList: [],				// List for pagination.
+				refresh: 0,					// 'refresh' passed from the 'Me' page, used to refresh the current video page after logging out.
+				
+			}
+		},
+		onLoad() {
+			var have = plus.navigator.hasNotchInScreen();	
+		},
+		onTabItemTap : function(e) {
+			var tabIndex = e.index;
+			// this.playStatus = tabIndex === 0 ? true : false;
+			
+			var me = this;
+			if (tabIndex == 0) {
+			} else if (tabIndex == 1) {
+				me.playStatus = false;
+				me.playFollowStatus = true;
+			} else if (tabIndex == 2) {
+				me.playStatus = true;
+				me.playFollowStatus = false;
+			}
+		},
+		onShow() {
+			var me = this;
+			
+			var myUserInfo = app.getUserInfoSession();
+			this.myUserInfo = myUserInfo;
+			
+			
+			if (this.$refs.videoComp != undefined) {
+				var playerList = this.$refs.videoComp.playerList;
+				if (playerList != undefined && playerList.length == 0) {
+					this.$refs.videoComp.displayVideoPaging(1, true);
+				}
+			}
+			
+			
+			if (me.curIndex == 0) {
+			} else if (me.curIndex == 1) {
+				me.playFollowStatus = true;
+			} else if (me.curIndex == 2) {
+				me.playStatus = true;
+			}
+			
+			var justFollowVlogerId = uni.getStorageSync("justFollowVlogerId");
+			if (!app.isStrEmpty(justFollowVlogerId)) {
+				this.$refs.videoComp.reFollowPlayList(justFollowVlogerId);
+				uni.setStorageSync("justFollowVlogerId", "");
+			}
+			var justCancelVlogerId = uni.getStorageSync("justCancelVlogerId");
+			if (!app.isStrEmpty(justCancelVlogerId)) {
+				this.$refs.videoComp.reCancelPlayList(justCancelVlogerId);
+				uni.setStorageSync("justCancelVlogerId", "");
+			}
+			
+		},
+		onHide() {
+			var me = this;
+			if (me.curIndex == 0) {
+				// 虚位以待
+			} else if (me.curIndex == 1) {
+				me.playFollowStatus = false;
+			} else if (me.curIndex == 2) {
+				me.playStatus = false;
+			}
+		},
+		onPullDownRefresh() {
+			var me = this;
+			
+			if (me.curIndex == 0) {
+				// 虚位以待
+			} else if (me.curIndex == 1) {
+				this.$refs.videoFollowComp.displayVideoPaging(1, true);
+			} else if (me.curIndex == 2) {
+				this.$refs.videoComp.displayVideoPaging(1, true);
+			}
+			
+		},
+		methods: {
+			goSearch() {
+				uni.navigateTo({
+					url: "/pages/search/search"
+				})
+			},
+			
+			changeTopTab: function(e) {
+				var current = e.detail.current;
+				this.curIndex = current;
+				this.playFollowStatus = this.curIndex === 1 ? true : false;
+				this.playStatus = this.curIndex === 2 ? true : false;
+			},
+			tapFollow: function(current) {
+				this.curIndex = current;
+				this.playFollowStatus = this.curIndex === 1 ? true : false;
+				this.playStatus = this.curIndex === 2 ? true : false;
+			},
+			
+			showLoading() {
+				this.isLoading = true;
+			},
+			hideLoading() {
+				this.isLoading = false;
+			},
+			letFollowVideoPause() {
+				this.playFollowStatus = false;
+			}
+		}
+	}
+</script>
