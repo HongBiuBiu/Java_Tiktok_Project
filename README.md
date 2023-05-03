@@ -1,5 +1,4 @@
 # Java_Tiktok_Project
-https://github.com/HongBiuBiu/Java_Tiktok_Project.git  
 NYU CS9053 23Spring Project  
 Some changes:  
 1. IMooc -> Tictok  
