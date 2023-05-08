@@ -301,17 +301,17 @@
 		"fontSize": "16px",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"text": "Home page"
+				"text": "Home"
 			},
 			{
 				"pagePath": "pages/friend/friend",
-				"text": "friends"
+				"text": "Friends"
 			}, {
 				"pagePath": "pages/message/message",
-				"text": "message"
+				"text": "Inbox"
 			}, {
 				"pagePath": "pages/me/me",
-				"text": "me"
+				"text": "Profile"
 			}
 		],
 		"midButton": {
