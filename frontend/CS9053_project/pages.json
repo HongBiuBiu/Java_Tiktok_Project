@@ -1,19 +1,19 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
 				"app-plus": {
-					"titleNView": false //禁用原生导航栏
+					"titleNView": false
 				},
-				"enablePullDownRefresh":true	//开启下拉刷新
+				"enablePullDownRefresh":true
 			}
 		},
 		{
             "path" : "pages/friend/friend",
             "style": {
                 "app-plus": {
-                	"titleNView": false //禁用原生导航栏
+                	"titleNView": false 
                 }
             }
         },
@@ -21,21 +21,21 @@
 		    "path" : "pages/vlog/vlog",
 		    "style": {
 		        "app-plus": {
-		        	"titleNView": false //禁用原生导航栏
+		        	"titleNView": false 
 		        }
 		    }
 		},
 		{
 		    "path" : "pages/publish/publish",
 		    "style": {
-		        "navigationBarTitleText": "发布视频"
+		        "navigationBarTitleText": "upload vedio"
 		    }
 		},
 		{
             "path" : "pages/me/me",
             "style": {
                 "app-plus": {
-                	"titleNView": false //禁用原生导航栏
+                	"titleNView": false
                 }
             }
         },
@@ -43,14 +43,14 @@
 		    "path" : "pages/me/vlogerInfo",
 		    "style": {
 		        "app-plus": {
-		        	"titleNView": false //禁用原生导航栏
+		        	"titleNView": false 
 		        }
 		    }
 		},
 		{
             "path" : "pages/message/message",
             "style": {
-                "navigationBarTitleText": "消息",
+                "navigationBarTitleText": "message",
 				"navigationBarBackgroundColor": "#181b27"
             }
         }
@@ -58,7 +58,7 @@
             "path" : "pages/publish/preview",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "预览视频",
+                "navigationBarTitleText": "preview vedio",
                 "enablePullDownRefresh": false
             }
             
@@ -67,7 +67,7 @@
             "path" : "pages/search/search",
 			"style": {
                "app-plus": {
-               	"titleNView": false //禁用原生导航栏
+               	"titleNView": false 
                }
 			}
             
@@ -75,7 +75,7 @@
             "path" : "pages/search/searchList",
             "style": {
                 "app-plus": {
-                	"titleNView": false //禁用原生导航栏
+                	"titleNView": false 
                 }
             }
         },
@@ -83,12 +83,12 @@
             "path" : "pages/qrcode/qrcode",
 			"style": {
 			   "app-plus": {
-					"titleNView": false ,//禁用原生导航栏
+					"titleNView": false ,
 					"navigationBarTextStyle": "black"
 			   }
 			}
             // "style": {
-            //     "navigationBarTitleText": "扫码分享",
+            //     "navigationBarTitleText": "share",
             //     "enablePullDownRefresh": false
             // }
             
@@ -97,7 +97,7 @@
             "path" : "pages/loginRegist/loginRegist",
             "style": {
                 "app-plus": {
-                	"titleNView": false ,//禁用原生导航栏
+                	"titleNView": false ,
 					"navigationBarTextStyle": "black"
                 }
             }
@@ -107,33 +107,33 @@
             "path" : "pages/me/myBackImg",
             "style": {
                 "app-plus": {
-                	"titleNView": false //禁用原生导航栏
+                	"titleNView": false 
                 }
             }
         },{
             "path" : "pages/me/myFace",
             "style": {
                 "app-plus": {
-                	"titleNView": false //禁用原生导航栏
+                	"titleNView": false 
                 }
             }
         },{
             "path" : "pages/me/myInfo",
             "style": {
-                "navigationBarTitleText": "修改个人资料",
+                "navigationBarTitleText": "Modify personal information",
 				"navigationBarBackgroundColor": "#181b27"
             }
         },{
             "path" : "pages/me/modifyNickname",
             "style": {
-                "navigationBarTitleText": "修改昵称",
+                "navigationBarTitleText": "Modify nickname",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -147,14 +147,14 @@
         },{
             "path" : "pages/me/modifyTictokNum",
             "style": {
-                "navigationBarTitleText": "修改慕课号",
+                "navigationBarTitleText": "Modify tictok id",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -168,14 +168,14 @@
         },{
             "path" : "pages/me/modifyDesc",
             "style": {
-                "navigationBarTitleText": "修改简介",
+                "navigationBarTitleText": "Modify description",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -189,14 +189,14 @@
 		},{
             "path" : "pages/me/modifySex",
             "style": {
-                "navigationBarTitleText": "修改性别",
+                "navigationBarTitleText": "Modify gender",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -210,14 +210,14 @@
 		},{
             "path" : "pages/me/modifyBirthday",
             "style": {
-                "navigationBarTitleText": "修改生日",
+                "navigationBarTitleText": "Modify birthday",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -231,14 +231,14 @@
 		},{
             "path" : "pages/me/modifyLocation",
             "style": {
-                "navigationBarTitleText": "修改所在地",
+                "navigationBarTitleText": "modify location",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [ //原生标题栏按钮配置,
+						"buttons": [ 
 							{
-								"text": "保存" ,//原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+								"text": "save" ,
 								"color": "#ef274d",
 								"width": "60px",
 								"fontSize": "15px",
@@ -252,35 +252,35 @@
 		},{
             "path" : "pages/me/chooseProvince",
             "style": {
-                "navigationBarTitleText": "选择省份",
+                "navigationBarTitleText": "choose province",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27"
             }
 		},{
             "path" : "pages/me/chooseCity",
             "style": {
-                "navigationBarTitleText": "选择地区",
+                "navigationBarTitleText": "choose district",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27"
             }
 		},{
             "path" : "pages/me/settings",
             "style": {
-                "navigationBarTitleText": "设置",
+                "navigationBarTitleText": "settings",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27"
             }
 		},{
             "path" : "pages/me/myFans",
             "style": {
-                "navigationBarTitleText": "我的粉丝",
+                "navigationBarTitleText": "follower",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27"
             }
 		},{
             "path" : "pages/me/myFollows",
             "style": {
-                "navigationBarTitleText": "我的关注",
+                "navigationBarTitleText": "following",
 				"navigationBarTextStyle":"white",
 				"navigationBarBackgroundColor": "#181b27"
             }
@@ -289,7 +289,7 @@
     ],
 	"globalStyle": {
 		"navigationBarBackgroundColor":"#000000",
-		"navigationBarTextStyle":"white",  //状态栏字体颜色
+		"navigationBarTextStyle":"white",  
 		"navigationBarTitleText": "uni-app",
 		"backgroundColor": "#000000"
 	},
@@ -301,17 +301,17 @@
 		"fontSize": "16px",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"text": "首页"
+				"text": "Home page"
 			},
 			{
 				"pagePath": "pages/friend/friend",
-				"text": "朋友"
+				"text": "friends"
 			}, {
 				"pagePath": "pages/message/message",
-				"text": "消息"
+				"text": "message"
 			}, {
 				"pagePath": "pages/me/me",
-				"text": "我"
+				"text": "me"
 			}
 		],
 		"midButton": {
