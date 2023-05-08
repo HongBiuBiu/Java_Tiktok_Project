@@ -286,7 +286,7 @@
 					me.playerList = newList;
 				}
 				
-				// 重置
+			
 				this.playerCur = 0;
 				this.currentIndex = 0;
 				this.contentOffsetY =0;
